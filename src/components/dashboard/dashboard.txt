@@ -1,0 +1,196 @@
+import { useState } from "react";
+import {
+  PowerMarketPrices,
+  GenerationForecastAnalysis,
+  OptimisedPowerAllocations,
+  DSMRevenueAnalysis,
+  WhatIfAnalysis,
+  HelpIcon,
+  SettingsIcon,
+  LogoutIcon,
+  SerenticaIcon,
+  CollapseIcon,
+  ExpandIcon,
+  serenticaLogo,
+} from "../../assets/index";
+import { useNavigate, useLocation } from "react-router-dom";
+import "./style.css";
+
+const ICONS_MAP = {
+  PowerMarketPrices: PowerMarketPrices,
+  GenerationForecastAnalysis: GenerationForecastAnalysis,
+  OptimisedPowerAllocations: OptimisedPowerAllocations,
+  DSMRevenueAnalysis: DSMRevenueAnalysis,
+  WhatIfAnalysis: WhatIfAnalysis,
+  Help: HelpIcon,
+  Logout: LogoutIcon,
+  Settings: SettingsIcon,
+};
+
+const ROUTE_MAP = {
+  PowerMarketPrices: "power-market-prices",
+  GenerationForecastAnalysis: "generation-forecast-analysis",
+  OptimisedPowerAllocations: "optimised-power-allocations",
+  DSMRevenueAnalysis: "DSM-revenue-analysis",
+  WhatIfAnalysis: "what-if-analysis",
+};
+
+const TITLE_MAP = {
+  PowerMarketPrices: "Power Market Prices",
+  GenerationForecastAnalysis: "Generation Forecast Analysis",
+  OptimisedPowerAllocations: "Optimised Power Allocations",
+  DSMRevenueAnalysis: "DSM Revenue Analysis",
+  WhatIfAnalysis: "What If Analysis",
+  Help: "Help",
+  Logout: "Logout",
+  Settings: "Settings",
+};
+
+function Dashboard({ children }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const GENERAL_TABS = Object.keys(ROUTE_MAP);
+  const SETTINGS = ["Help", "Logout", "Settings"];
+  const activeRoute = location.pathname.split("/").pop();
+
+  function handleHover() {
+    if (!isExpanded) setIsHovered(!isHovered);
+  }
+
+  function handleDrawerToggle() {
+    setIsExpanded(!isExpanded);
+  }
+
+  return (
+    <div className="container">
+      <div className={`nav-wrapper ${isExpanded ? "expanded" : "collapsed"}`}>
+        <div className="inner-wrapper">
+          {/* <div>
+            <img src={serenticaLogo} alt="Logo" title={"Serentica"} />
+          </div> */}
+          {!isExpanded && (
+            <>
+              <div
+                onMouseEnter={handleHover}
+                onMouseLeave={handleHover}
+                onClick={handleDrawerToggle}
+              >
+                <img
+                  src={isHovered ? ExpandIcon : SerenticaIcon}
+                  width={54}
+                  height={50}
+                  alt="Logo"
+                  title={isHovered ? "Toggle" : "Serentica"}
+                />
+              </div>
+            </>
+          )}
+          <div className="tabs">
+            {isExpanded && <div>GENERAL</div>}
+            {GENERAL_TABS.map((tab, index) => {
+              const route = ROUTE_MAP[tab];
+              const isActive = activeRoute === route;
+
+              return (
+                <div
+                  key={index}
+                  className={`tab-general ${isActive ? "active" : ""}`}
+                  onClick={() => navigate(`/dashboard/${route}`)}
+                >
+                  <img src={ICONS_MAP[tab]} title={TITLE_MAP[tab]} alt={tab} />
+                  {isExpanded && <span>{tab}</span>}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="tabs">
+          {isExpanded && <div>SETTINGS</div>}
+          {SETTINGS.map((setting, index) => (
+            <div key={index} className={"tab-settings"}>
+              <img
+                src={ICONS_MAP[setting]}
+                alt={setting}
+                title={TITLE_MAP[setting]}
+              />
+              {isExpanded && <span>{setting}</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="main-content">{children}</div>
+    </div>
+  );
+}
+
+export default Dashboard;
+
+--------------------------------------------------------------
+
+.container {
+  display: flex;
+  background-color: #e1e3e4;
+  width: 100vw;
+}
+
+.nav-wrapper {
+  /* color: var(--background-color); */
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  height: 100vh;
+  border: 0 solid #e1e3e4;
+  background: var(--white, #fff);
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16), 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.expanded {
+  width: 275px;
+  align-items: start;
+}
+
+.collapsed {
+  width: 64px;
+  align-items: center;
+}
+
+.inner-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tab-general {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.tab-general:hover,
+.tab-general.active {
+  background-color: #e9f6f7;
+}
+
+.tab-settings {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
