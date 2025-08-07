@@ -1,4 +1,4 @@
-import { PowerPricePanel } from "../../components/powerPricePanel";
+import { PowerPricePanel } from "../../components/PowerPricePanel";
 import "./style.css";
 function PowerMarketPrices() {
   return (

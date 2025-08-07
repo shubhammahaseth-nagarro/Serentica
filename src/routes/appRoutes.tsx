@@ -1,13 +1,13 @@
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 
-import { ProtectedRoute } from "../components/auth/protectedRoute";
-import { PowerMarketPrices } from "../pages/powerMarketPrices";
-import { GenerationForecastAnalysis } from "../pages/generationForecastAnalysis";
-import { OptimisedPowerAllocations } from "../pages/optimisedPowerAllocations";
+import { ProtectedRoute } from "../components/auth/ProtectedRoute";
+import { PowerMarketPrices } from "../pages/PowerMarketPrices";
+import { GenerationForecastAnalysis } from "../pages/GenerationForecastAnalysis";
+import { OptimisedPowerAllocations } from "../pages/OptimisedPowerAllocations";
 import { DSMRevenueAnalysis } from "../pages/DSM&RevenueAnalysis";
-import { WhatIfAnalysis } from "../pages/whatIfAnalysis";
+import { WhatIfAnalysis } from "../pages/WhatIfAnalysis";
 // import LandingPage from "@/pages";
-import Login from "../pages/auth/login";
+import Login from "../pages/auth/Login";
 // import Register from "@/pages/auth/register";
 // import ForgotPassword from "@/pages/auth/forgot-password";
 // import MarketPrices from "@/pages/dashboard/market-prices";

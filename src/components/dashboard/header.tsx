@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { TABS } from "../../constants";
 import { Fragment } from "react";
-import DateTimeWidget from "../dateTimeWidget";
+import DateTimeWidget from "../DateTimeWidget";
 import "./style.css";
 import { NotificationIcon, SearchIcon } from "../../assets/index";
-import { UserCard } from "../userCard";
+import { UserCard } from "../UserCard";
 
 function Header() {
   const location = useLocation();

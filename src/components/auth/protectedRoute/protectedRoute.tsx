@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { Dashboard } from "../../dashboard";
+import { Dashboard } from "../../Dashboard";
 
 function ProtectedRoute({ children }) {
   //   const { isAuthenticated } = useAuth();
