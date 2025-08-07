@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { SerenticaIcon, CollapseIcon, ExpandIcon } from "../../assets/index";
+import { useState, useEffect } from "react";
+import { CollapseIcon, ExpandIcon, SerenticaLogo } from "../../assets/index";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TABS } from "../../constants";
 import "./style.css";
@@ -13,31 +13,55 @@ function Dashboard({ children }) {
   const location = useLocation();
   const activeRoute = location.pathname.split("/").pop();
 
+  function handleCollapse() {
+    setIsExpanded(!isExpanded);
+    setIsHovered(false);
+  }
+
   return (
     <div className="container">
       <div className={`nav-wrapper ${isExpanded ? "expanded" : "collapsed"}`}>
         <div className="inner-wrapper">
           <div className="top-section">
-            {!isExpanded && (
-              <div
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                onClick={() => setIsExpanded(!isExpanded)}
-              >
-                <img
-                  src={isHovered ? ExpandIcon : SerenticaIcon}
-                  width={54}
-                  height={50}
-                  alt="Logo"
-                  title={isHovered ? "Toggle" : "Serentica"}
-                />
-              </div>
-            )}
-            {isExpanded && (
-              <div onClick={() => setIsExpanded(!isExpanded)}>
-                <img src={CollapseIcon} width={54} height={50} alt="Logo" />
-              </div>
-            )}
+            <div
+              className={`nav-header ${
+                isExpanded ? "nav-header-expanded" : ""
+              }`}
+            >
+              {isExpanded && (
+                <div>
+                  <img
+                    src={SerenticaLogo}
+                    width={100}
+                    height={22}
+                    alt="Logo"
+                    title={"Serentica"}
+                  />
+                </div>
+              )}
+              {!isExpanded && (
+                <div
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className={`${isHovered ? "side-nav-toggle" : ""} `}
+                >
+                  <img
+                    src={isHovered ? ExpandIcon : SerenticaLogo}
+                    width={isHovered ? 32 : 50}
+                    height={isHovered ? 32 : 11}
+                    alt="Logo"
+                    title={isHovered ? "Toggle" : "Serentica"}
+                  />
+                </div>
+              )}
+
+              {isExpanded && (
+                <div onClick={handleCollapse}>
+                  <img src={CollapseIcon} width={35} height={35} alt="Logo" />
+                </div>
+              )}
+            </div>
             {TABS.filter((s) => s.section === "GENERAL").map(
               ({ section, tabs }) => (
                 <SidebarSection
@@ -52,7 +76,11 @@ function Dashboard({ children }) {
             )}
           </div>
 
-          <div className="bottom-section">
+          <div
+            className={`bottom-section ${
+              isExpanded ? "bottom-section-expanded" : ""
+            }`}
+          >
             {TABS.filter((s) => s.section === "SETTINGS").map(
               ({ section, tabs }) => (
                 <SidebarSection

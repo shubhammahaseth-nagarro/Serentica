@@ -1,0 +1,31 @@
+/* PowerPricePanel */
+
+.power-price-panel-container {
+  background-color: var(--white-color);
+  padding: 17px 16px 21px 21px;
+  border-radius: 8px;
+  border: 0.5px solid var(--black-border);
+  box-shadow: 2px 2px 4px 0 rgba(207, 207, 207, 0.3);
+}
+
+/* PanelHeaderContainer */
+
+.panel-header-container {
+  display: flex;
+}
+
+.header-label {
+  color: var(--black-text-colo);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.header-sub-label {
+  color: var(--gray-text);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}

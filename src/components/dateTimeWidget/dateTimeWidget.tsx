@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { SunIcon } from "../../assets/index";
 import "./style.css";
 
 export function DateTimeWidget() {
@@ -29,14 +30,20 @@ export function DateTimeWidget() {
 
   return (
     <div className="date-time-widget">
-      <div>{isDay ? "☀️" : "🌙"}</div>
       <div>
+        {isDay ? (
+          <img src={SunIcon} width={18} height={18} alt="icon" />
+        ) : (
+          <img src={SunIcon} width={18} height={18} alt="icon" />
+        )}
+      </div>
+      <div className="date-label">
         <div>
           <span>{weekday}</span>
           <span> | </span>
           <span>{dateString}</span>
         </div>
-        <div>UTC {utcTime}</div>
+        <div className="time-label">UTC {utcTime}</div>
       </div>
     </div>
   );

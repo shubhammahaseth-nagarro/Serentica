@@ -24,7 +24,7 @@ function SidebarSection({ title, items, isExpanded, activeRoute, onNavigate }) {
       {isExpanded && (
         <div className="label-with-line">
           <div className="horizontal-line" />
-          <span>{title}</span>
+          <span className="side-nav-title">{title}</span>
         </div>
       )}
 
@@ -34,13 +34,25 @@ function SidebarSection({ title, items, isExpanded, activeRoute, onNavigate }) {
         return (
           <div
             key={key}
-            className={`tab-${title.toLowerCase()} ${isActive ? "active" : ""}`}
+            className={`tab-${title.toLowerCase()} ${
+              isActive ? "active" : ""
+            } ${isExpanded ? "" : "side-bar-expanded"}`}
             onClick={
               route ? () => onNavigate(`/dashboard/${route}`) : undefined
             }
           >
-            <img src={ICONS_MAP[iconKey]} alt={label} title={label} />
-            {isExpanded && <span>{label}</span>}
+            <img
+              src={ICONS_MAP[iconKey]}
+              width={24}
+              height={24}
+              alt={label}
+              title={label}
+            />
+            {isExpanded && (
+              <span className={`text-wrapper ${isActive ? "active" : ""}`}>
+                {label}
+              </span>
+            )}
           </div>
         );
       })}

@@ -3,4 +3,18 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-right: 12px;
+  column-gap: 5px;
+}
+
+.date-label {
+  color: var(--black-text-color);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19px;
+}
+
+.time-label {
+  font-weight: 600;
 }
