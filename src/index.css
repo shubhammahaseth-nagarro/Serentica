@@ -1,11 +1,18 @@
 :root {
-  --green-color: #e9f6f7;
-  --white-color: #fff;
-  --black-text-color: #242525;
-  --gray-text: #6d6f70;
-  --green-text: #21a4b1;
-  --black-border: #e1e3e4;
-  --white-background: #f8f8f8;
+  /* White */
+  --white-10: #fff;
+  --white-15: #f8f8f8;
+
+  /* Black */
+  --black-10: #242525;
+
+  /* Gray */
+  --gray-10: #6d6f70;
+  --gray-15: #e9f6f7;
+  --gray-20: #e1e3e4;
+
+  /* Green */
+  --green-10: #21a4b1;
 }
 
 body {

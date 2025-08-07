@@ -1,10 +1,10 @@
 /* PowerPricePanel */
 
 .power-price-panel-container {
-  background-color: var(--white-color);
+  background-color: var(--white-10);
   padding: 17px 16px 21px 21px;
   border-radius: 8px;
-  border: 0.5px solid var(--black-border);
+  border: 0.5px solid var(--gray-20);
   box-shadow: 2px 2px 4px 0 rgba(207, 207, 207, 0.3);
 }
 
@@ -23,7 +23,7 @@
 }
 
 .header-sub-label {
-  color: var(--gray-text);
+  color: var(--gray-10);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
